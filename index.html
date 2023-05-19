@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="allItem()">
+    <input type="text" placeholder="Product" id="userInput">
+    <button onclick="add()">Add TO Cart</button>
+    <button onclick="deleteItem()">Delete All Cart</button>
+    <div id="disp"></div>
+    <script>
+        var ecommerce = []
+        function add() {
+            if(userInput.value == ""){
+                alert("input something")
+            }else{
+                 ecommerce.push(userInput.value)
+                disp.innerHTML = ecommerce
+                console.log(ecommerce)
+                localStorage.setItem("allProduct", JSON.stringify,(ecommerce))
+            }
+           userInput.value = ""
+        }
+
+        function deleteItem(){
+          var careful =  confirm("Are You Sure You Want To Delete , This Action Is Irreversible")
+            if (careful == false){
+                alert("You are safe")
+            }else{
+             ecommerce.splice(0)
+            console.log(ecommerce)
+            }
+        }
+
+        function allItem(){
+          ecommerce= JSON.parse(localStorage.getItem("allProduct"))
+        }
+    </script>
+</body>
+</html>
